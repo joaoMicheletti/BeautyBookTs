@@ -1,23 +1,30 @@
 import { Test, TestingModule } from '@nestjs/testing';
+// provider of register salon
 import { SalaoRegister } from './providers/salao.providers/register.service';
+//provider od register service
+import { Servicos } from './providers/salao.providers/servicos.service';
 import connection from './database/connection'; // Ajuste o caminho conforme necessário
 
 describe('SalaoRegister', () => {
   let salaoRegister: SalaoRegister;
-
+  let servico: Servicos;
   beforeEach(async () => {
     const moduleRef: TestingModule = await Test.createTestingModule({
-      providers: [SalaoRegister],
+      providers: [SalaoRegister,Servicos],
     }).compile();
 
     salaoRegister = moduleRef.get<SalaoRegister>(SalaoRegister);
+    servico = moduleRef.get<Servicos>(Servicos);
+  });
+  afterEach(() => {
+    jest.clearAllMocks(); // Limpar todos os mocks após cada teste
   });
 
   describe('Register', () => {
     it('Register a new salon', async () => {
       // Dados simulados para registro de um novo salão
       const salaoData = {
-        cpf_salao: '4155216280000', // cpf ficticio
+        cpf_salao: '41552162800000000010', // cpf ficticio
         nome_salao: 'Salão Teste',
         endereco: 'Rua Teste, 123',
         cep: '06612100',
@@ -42,7 +49,7 @@ describe('SalaoRegister', () => {
     it('Search registered salon', async () => {
       // Dados simulados para registro de um salão que já existe
       const salaoData = {
-        cpf_salao: '415521628000', // CPF que já existe na base de dados
+        cpf_salao: '10', // CPF que já existe na base de dados
         nome_salao: 'Salão Teste',
         endereco: 'Rua Teste, 123',
         cep: '06612100',
@@ -62,4 +69,25 @@ describe('SalaoRegister', () => {
     });
   });
   //teste de assinatura de plano
+  //teste of register service!
+  describe('Register', () => {
+    it('should register a new service', async () => {
+      // Dados simulados para registro de um novo serviço
+      const salaoData = {
+        cpf_salao: '10', // CPF fictício
+        servico: 'Salão Teste',
+        preco: '150',
+      };
+
+      // Mock do método 'where' de 'connection' para simular que não há serviço cadastrado
+      jest.spyOn(connection('servicos'), 'where').mockResolvedValue([]);
+
+      // Mock do método 'insert' de 'connection' para simular o sucesso do cadastro
+      jest.spyOn(connection('servicos'), 'insert').mockResolvedValue([1]); // 1 registro inserido
+
+      const result = await servico.Register(salaoData);
+
+      expect(result).toBe('Serviço cadastrado!');
+    });
+  });
 });
