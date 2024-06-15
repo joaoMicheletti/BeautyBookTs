@@ -17,7 +17,7 @@ describe('SalaoRegister', () => {
     it('Register a new salon', async () => {
       // Dados simulados para registro de um novo salão
       const salaoData = {
-        cpf_salao: '4155216280000',
+        cpf_salao: '4155216280000', // cpf ficticio
         nome_salao: 'Salão Teste',
         endereco: 'Rua Teste, 123',
         cep: '06612100',
@@ -54,7 +54,7 @@ describe('SalaoRegister', () => {
       };
 
       // Mock do método 'where' de 'connection' para simular que há um salão cadastrado com o CPF informado
-      jest.spyOn(connection('salao'), 'where').mockResolvedValue([{ cpf_salao: '38860300835' }]);
+      jest.spyOn(connection('salao'), 'where').mockResolvedValue([{ cpf_salao: '415521628000' }]); // informar o mesmo cpf_salao do salaoData{}
 
       const result = await salaoRegister.Register(salaoData);
 
