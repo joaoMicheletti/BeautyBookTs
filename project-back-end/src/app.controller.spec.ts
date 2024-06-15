@@ -14,10 +14,10 @@ describe('SalaoRegister', () => {
   });
 
   describe('Register', () => {
-    it('should register a new salon and return success message', async () => {
+    it('Register a new salon', async () => {
       // Dados simulados para registro de um novo salão
       const salaoData = {
-        cpf_salao: '1020304050',
+        cpf_salao: '4155216280000',
         nome_salao: 'Salão Teste',
         endereco: 'Rua Teste, 123',
         cep: '06612100',
@@ -36,13 +36,13 @@ describe('SalaoRegister', () => {
 
       const result = await salaoRegister.Register(salaoData);
 
-      expect(result).toBe('cadastrado com sucesso');
+      expect(result).toBe('cadastrado com sucesso!');
     });
 
-    it('should return "salão já cadastrado" if salon already exists', async () => {
+    it('Search registered salon', async () => {
       // Dados simulados para registro de um salão que já existe
       const salaoData = {
-        cpf_salao: '10203040', // CPF que já existe na base de dados
+        cpf_salao: '415521628000', // CPF que já existe na base de dados
         nome_salao: 'Salão Teste',
         endereco: 'Rua Teste, 123',
         cep: '06612100',
