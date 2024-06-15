@@ -18,5 +18,15 @@ export class Servicos {
       console.error('Error registering service:', error);
       throw new Error('Failed to register service.');
     }
-  }
+  };
+  async Listar(data: ServicosRegisterDto): Promise<object> {
+    const {cpf_salao} = data;
+    try {
+      const List = await connection('servicos').where('cpf_salao', cpf_salao).select("*");
+      return List;    
+    } catch (error) {
+      console.error('Error registering service:', error);
+      throw new Error('Failed to register service.');      
+    }
+  };
 }

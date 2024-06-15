@@ -8,5 +8,9 @@ export class ServicosController {
     @Post('/servicos')
     async Register(@Body() data: ServicosRegisterDto): Promise<string>{
         return await this.Servicos.Register(data);
+    };
+    @Post('/servico')
+    async Listar(@Body() data: ServicosRegisterDto): Promise<object> {
+        return await this.Servicos.Listar(data);
     }
 }
