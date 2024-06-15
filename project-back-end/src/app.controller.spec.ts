@@ -61,4 +61,5 @@ describe('SalaoRegister', () => {
       expect(result).toBe('salão já cadastrado');
     });
   });
+  //teste de assinatura de plano
 });
