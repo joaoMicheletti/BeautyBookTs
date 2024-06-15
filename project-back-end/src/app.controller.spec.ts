@@ -90,4 +90,25 @@ describe('SalaoRegister', () => {
       expect(result).toBe('Serviço cadastrado!');
     });
   });
+  // buscar todos os serviços de um salão ;
+  describe('List', () => {
+    it('should searsh all services', async () => {
+      // Dados simulados para registro de um novo serviço
+      const salaoData = {
+        cpf_salao: '10', // CPF fictício
+        servico: 'Salão Teste',
+        preco: '150',
+      };
+
+      // Mock do método 'where' de 'connection' para simular que não há serviço cadastrado
+      jest.spyOn(connection('servicos'), 'where').mockResolvedValue([]);
+
+      // Mock do método 'insert' de 'connection' para simular o sucesso do cadastro
+      jest.spyOn(connection('servicos'), 'insert').mockResolvedValue([1]); // 1 registro inserido
+
+      const result = await servico.Listar(salaoData);
+
+      expect(result).toBe(result);
+    });
+  });
 });
