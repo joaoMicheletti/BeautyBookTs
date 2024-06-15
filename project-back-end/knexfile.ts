@@ -1,6 +1,5 @@
-import type { Knex } from "knex";
-
-// Update with your config settings.
+// knexfile.ts
+import type { Knex } from 'knex';
 
 export const config: { [key: string]: Knex.Config } = {
   development: {
@@ -15,37 +14,38 @@ export const config: { [key: string]: Knex.Config } = {
   },
 
   staging: {
-    client: "postgresql",
+    client: 'postgresql',
     connection: {
-      database: "my_db",
-      user: "username",
-      password: "password"
+      database: 'my_db',
+      user: 'username',
+      password: 'password'
     },
     pool: {
       min: 2,
       max: 10
     },
     migrations: {
-      tableName: "knex_migrations"
+      tableName: 'knex_migrations',
+      directory: './src/database/migrations'
     }
   },
 
   production: {
-    client: "postgresql",
+    client: 'postgresql',
     connection: {
-      database: "my_db",
-      user: "username",
-      password: "password"
+      database: 'my_db',
+      user: 'username',
+      password: 'password'
     },
     pool: {
       min: 2,
       max: 10
     },
     migrations: {
-      tableName: "knex_migrations"
+      tableName: 'knex_migrations',
+      directory: './src/database/migrations'
     }
   }
-
 };
 
-module.exports = config;
+export default config;

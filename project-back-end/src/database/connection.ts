@@ -1,5 +1,7 @@
-import knex from "knex";
-import {config} from '../../knexfile';
+// src/database/connection.ts
+import knex from 'knex';
+import { config } from '../../knexfile';
 
-const connect = knex(config.development);
-module.exports = connect;
+const connection = knex(config.development);
+
+export default connection;
