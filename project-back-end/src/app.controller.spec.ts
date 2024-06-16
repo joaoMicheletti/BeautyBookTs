@@ -1,20 +1,24 @@
 import { Test, TestingModule } from '@nestjs/testing';
 // provider of register salon
 import { SalaoRegister } from './providers/salao.providers/register.service';
-//provider od register service
+//provider of register service
 import { Servicos } from './providers/salao.providers/servicos.service';
-import connection from './database/connection'; // Ajuste o caminho conforme necessário
+import connection from './database/connection'; 
+//provider of Funcionamento
+import { Funcionamento } from './providers/salao.providers/funcionamento.service';
 
 describe('Salon and services', () => {
   let salaoRegister: SalaoRegister;
   let servico: Servicos;
+  let funcionamento: Funcionamento;
   beforeEach(async () => {
     const moduleRef: TestingModule = await Test.createTestingModule({
-      providers: [SalaoRegister,Servicos],
+      providers: [SalaoRegister,Servicos, Funcionamento],
     }).compile();
 
     salaoRegister = moduleRef.get<SalaoRegister>(SalaoRegister);
     servico = moduleRef.get<Servicos>(Servicos);
+    funcionamento = moduleRef.get<Funcionamento>(Funcionamento);
   });
   afterEach(() => {
     jest.clearAllMocks(); // Limpar todos os mocks após cada teste
@@ -144,4 +148,19 @@ describe('Salon and services', () => {
       expect(response).toBe('Deletado');
     });
   });
+  describe('Insert opening hours', () => {
+    it('Register a opening hours', async () => {
+      const Data = {
+        cpf_salao: "10",
+        dia: "terça",
+        inicio_trabalhos: "08:00",
+        fim_trabalhos: "18:00"
+      };
+      jest.spyOn(connection('horarios'), 'where').mockResolvedValue([]);
+      jest.spyOn(connection('horarios'), 'insert').mockResolvedValue([1]);
+      const response = await funcionamento.HorarioFuncionamento(Data);
+      expect(response).toBe('Cadastrado');
+    });
+  });
 });
+//describe('Salon and ser', () => {});
