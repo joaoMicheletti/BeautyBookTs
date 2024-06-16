@@ -17,5 +17,9 @@ export class ServicosController {
     async EditarServico(@Body() data: ServicosRegisterDto): Promise<string>{
         return await this.Servicos.EditarServico(data);
     };
+    @Post('/deletarservicos')
+    async Delete(@Body() data: ServicosRegisterDto): Promise<string> {
+        return await this.Servicos.Delete(data);
+    }
 
 }

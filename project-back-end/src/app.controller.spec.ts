@@ -128,4 +128,20 @@ describe('Salon and services', () => {
       jest.spyOn(connection('servicos'), 'update').mockResolvedValue([1]);    
     });
   });
+  // Delete a service
+  describe('Delete a service', () => {
+    it('Delete a service', async () => {
+      // Dados simulados para registro de um novo serviço
+      const salaoData = {
+        cpf_salao: '10', // CPF fictício
+        servico: 'Salão Teste',
+        preco: '150',
+        id:'1'
+      };
+      jest.spyOn(connection('servicos'), 'where').mockResolvedValue([]);
+      jest.spyOn(connection('servicos'), 'update').mockResolvedValue([1]);  
+      const response = await servico.Delete(salaoData); 
+      expect(response).toBe('Deletado');
+    });
+  });
 });

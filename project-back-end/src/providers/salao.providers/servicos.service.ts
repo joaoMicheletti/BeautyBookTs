@@ -33,5 +33,11 @@ export class Servicos {
     const {id, preco} = data;
     await connection('servicos').where('id', id).update('preco', preco);
     return "Editado";
+  };
+  async Delete(data: ServicosRegisterDto): Promise<string> {
+    const {id} = data;
+    await connection('servicos').where('id', id).delete();
+    return "Deletado";
+  
   }
 }
