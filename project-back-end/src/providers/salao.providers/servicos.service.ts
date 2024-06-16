@@ -29,4 +29,10 @@ export class Servicos {
       throw new Error('Failed to register service.');      
     }
   };
+  async EditarServico(data: ServicosRegisterDto): Promise<string> {
+    const {id, preco} = data;
+    await connection('servicos').where('id', id)
+    .update('preco', preco);
+    return 'Editado';
+  }
 }
