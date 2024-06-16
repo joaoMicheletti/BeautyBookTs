@@ -9,18 +9,23 @@ import { AssinaturaPlano } from './providers/salao.providers/plano.service';
 //controller e provider serviços
 import {ServicosController} from './controllers/salao/app.controller.servicos';
 import { Servicos } from './providers/salao.providers/servicos.service';
+//controller e provider Horario de funcionamento;
+import {HorarioFuncionamentoController} from './controllers/salao/app.controller.horarioFuncionamento';
+import { Funcionamento } from './providers/salao.providers/funcionamento.service';
 
 @Module({
   imports: [],
   controllers: [
     RegisterSalaoController,
     AssinaturaPlanoController,
-    ServicosController
+    ServicosController,
+    HorarioFuncionamentoController,
   ],
   providers: [
     SalaoRegister,
     AssinaturaPlano,
-    Servicos
+    Servicos,
+    Funcionamento
   ],
 })
 export class AppModule {}
