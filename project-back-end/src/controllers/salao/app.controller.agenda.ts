@@ -9,4 +9,8 @@ export class AgendaController {
     async BuscarAgendaSalao(@Body() data: AgendaSalaoDto): Promise<object> {
         return await this.agenda.BuscarAgendaSalao(data);
     };
+    @Post('/buscarfuncionario')
+    async BuscarFuncionario(@Body() data: AgendaSalaoDto): Promise<object> {
+        return await this.agenda.BuscarFuncionario(data);
+    }
 }
