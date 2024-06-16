@@ -162,5 +162,20 @@ describe('Salon and services', () => {
       expect(response).toBe('Cadastrado');
     });
   });
+  describe('Update openning hours', () => {
+    it('Update openning hours', async () => {
+      const Data = {
+        cpf_salao: "10",
+        dia: "terça",
+        inicio_trabalhos: "08:00",
+        fim_trabalhos: "18:00"
+      };
+      jest.spyOn(connection('horarios'), 'where').mockResolvedValue([]);
+      jest.spyOn(connection('horarios'), 'update').mockResolvedValue([1]);
+      const response = await funcionamento.EditarHorario(Data);
+      expect(response).toBe('Atualizado');
+
+    });
+  });
 });
 //describe('Salon and ser', () => {});

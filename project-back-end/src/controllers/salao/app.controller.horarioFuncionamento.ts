@@ -1,6 +1,6 @@
-import { Body, Controller, Post } from "@nestjs/common";
+import { Body, Controller, Post, Put } from "@nestjs/common";
 import {Funcionamento} from '../../providers/salao.providers/funcionamento.service';
-import {FuncionamentoDto} from '../../providers/salao.providers/horario-funcionamento.dts';
+import {FuncionamentoDto} from '../../providers/salao.providers/horario-funcionamento.dto';
 
 @Controller()
 export class HorarioFuncionamentoController {
@@ -9,6 +9,10 @@ export class HorarioFuncionamentoController {
     @Post('/horariofuncionamento')
     async HorarioFuncionament(@Body() data: FuncionamentoDto): Promise<string> {
         return await this.horario.HorarioFuncionamento(data);
+    };
+    @Put('/horariofuncionamento')
+    async EditarHorario(@Body() data: FuncionamentoDto): Promise<string> {
+        return await this.horario.EditarHorario(data);
     }
 }
 
