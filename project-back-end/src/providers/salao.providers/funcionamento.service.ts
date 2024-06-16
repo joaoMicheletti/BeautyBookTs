@@ -33,5 +33,9 @@ export class Funcionamento {
         await connection('horarios').where('id', id).delete();
         return 'Deletado';
     };
-
+    async Listar(data: FuncionamentoDto): Promise<object> {
+        const {cpf_salao} = data;
+        const lista = await connection('horarios').where('cpf_salao', cpf_salao);
+        return lista;
+    }
 }

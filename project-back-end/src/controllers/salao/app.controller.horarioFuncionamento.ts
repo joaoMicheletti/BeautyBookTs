@@ -17,7 +17,11 @@ export class HorarioFuncionamentoController {
     @Post('/deletarhorario')
     async DeletarHorario(@Body() data: FuncionamentoDto): Promise<string> {
         return await this.horario.DeletarHorario(data);
-    }
+    }; 
+    @Post('/listarhorariofuncionamento')
+    async Listar(@Body() data: FuncionamentoDto): Promise<object> {
+        return await this.horario.Listar(data);
+    };
 }
 
 
