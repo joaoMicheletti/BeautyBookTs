@@ -230,5 +230,19 @@ describe('Salon and services', () => {
       expect(response).toBe(response);
     });
   });
+  describe('Search schedule of employee', () => {
+    it('search schedule of employee', async () => {
+      const Data = {
+        dia: '10',
+        mes: '5',
+        ano: '2024',
+        cpf_salao: '10',
+        cpf_funcionario: '102030'
+      };
+      jest.spyOn(connection('agenda'), 'where').mockResolvedValue([]);
+      jest.spyOn(connection('agenda'), 'select').mockRejectedValue([1]);
+      const response = await agenda.BuscarFuncionario(Data);      
+    });
+  });
 });
 //describe('Salon and ser', () => {});

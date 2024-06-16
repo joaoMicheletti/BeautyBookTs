@@ -15,6 +15,11 @@ import { Funcionamento } from './providers/salao.providers/funcionamento.service
 //controller e provide de Agenda;
 import { AgendaController } from './controllers/salao/app.controller.agenda';
 import { Agenda } from './providers/salao.providers/agenda.service';
+//controller e provider de Funcionario;
+import { FuncionarioController } from './controllers/salao/app.controleer.funcionario';
+import { Funcionario } from './providers/salao.providers/funcionario.service';
+
+
 @Module({
   imports: [],
   controllers: [
@@ -23,6 +28,7 @@ import { Agenda } from './providers/salao.providers/agenda.service';
     ServicosController,
     HorarioFuncionamentoController,
     AgendaController,
+    FuncionarioController
   ],
   providers: [
     SalaoRegister,
@@ -30,6 +36,7 @@ import { Agenda } from './providers/salao.providers/agenda.service';
     Servicos,
     Funcionamento,
     Agenda,
+    Funcionario
   ],
 })
 export class AppModule {}
