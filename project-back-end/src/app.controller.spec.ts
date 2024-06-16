@@ -5,7 +5,7 @@ import { SalaoRegister } from './providers/salao.providers/register.service';
 import { Servicos } from './providers/salao.providers/servicos.service';
 import connection from './database/connection'; // Ajuste o caminho conforme necessário
 
-describe('SalaoRegister', () => {
+describe('Salon and services', () => {
   let salaoRegister: SalaoRegister;
   let servico: Servicos;
   beforeEach(async () => {
@@ -20,11 +20,11 @@ describe('SalaoRegister', () => {
     jest.clearAllMocks(); // Limpar todos os mocks após cada teste
   });
 
-  describe('Register', () => {
+  describe('Register a new salon', () => {
     it('Register a new salon', async () => {
       // Dados simulados para registro de um novo salão
       const salaoData = {
-        cpf_salao: '41552162800000000010', // cpf ficticio
+        cpf_salao: '4155216280000040030000010', // cpf ficticio
         nome_salao: 'Salão Teste',
         endereco: 'Rua Teste, 123',
         cep: '06612100',
@@ -45,7 +45,8 @@ describe('SalaoRegister', () => {
 
       expect(result).toBe('cadastrado com sucesso!');
     });
-
+  });
+  describe('Search registered salon', () => {
     it('Search registered salon', async () => {
       // Dados simulados para registro de um salão que já existe
       const salaoData = {
@@ -67,16 +68,17 @@ describe('SalaoRegister', () => {
 
       expect(result).toBe('salão já cadastrado');
     });
-  });
+  })
   //teste de assinatura de plano
   //teste of register service!
-  describe('Register', () => {
+  describe('Register a new service', () => {
     it('should register a new service', async () => {
       // Dados simulados para registro de um novo serviço
       const salaoData = {
         cpf_salao: '10', // CPF fictício
         servico: 'Salão Teste',
         preco: '150',
+        id: ''
       };
 
       // Mock do método 'where' de 'connection' para simular que não há serviço cadastrado
@@ -91,13 +93,14 @@ describe('SalaoRegister', () => {
     });
   });
   // buscar todos os serviços de um salão ;
-  describe('List', () => {
+  describe('List all cervices', () => {
     it('should searsh all services', async () => {
       // Dados simulados para registro de um novo serviço
       const salaoData = {
         cpf_salao: '10', // CPF fictício
         servico: 'Salão Teste',
         preco: '150',
+        id:''
       };
 
       // Mock do método 'where' de 'connection' para simular que não há serviço cadastrado
@@ -109,6 +112,20 @@ describe('SalaoRegister', () => {
       const result = await servico.Listar(salaoData);
 
       expect(result).toBe(result);
+    });
+  });
+  // update a service
+  describe('Update a service', () => {
+    it('Update a service', async () => {
+      // Dados simulados para registro de um novo serviço
+      const salaoData = {
+        cpf_salao: '10', // CPF fictício
+        servico: 'Salão Teste',
+        preco: '150',
+        id:'1'
+      };
+      jest.spyOn(connection('servicos'), 'where').mockResolvedValue([]);
+      jest.spyOn(connection('servicos'), 'update').mockResolvedValue([1]);    
     });
   });
 });

@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { Body, Injectable } from "@nestjs/common";
 import { ServicosRegisterDto } from '../../providers/salao.providers/servicos-register.dot';
 import connection from "../../database/connection";
 
@@ -29,10 +29,9 @@ export class Servicos {
       throw new Error('Failed to register service.');      
     }
   };
-  async EditarServico(data: ServicosRegisterDto): Promise<string> {
+  async EditarServico(@Body() data: ServicosRegisterDto): Promise<string> {
     const {id, preco} = data;
-    await connection('servicos').where('id', id)
-    .update('preco', preco);
-    return 'Editado';
+    await connection('servicos').where('id', id).update('preco', preco);
+    return "Editado";
   }
 }
