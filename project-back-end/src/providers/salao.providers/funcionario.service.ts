@@ -30,5 +30,17 @@ export class Funcionario{
         const {cpf_salao} = data;
         const List = await connection('funcionarios').where('cpf_salao', cpf_salao).select('*');
         return List;
-    }
+    };
+    async DeletarFuncionario(data: FuncionarioDto): Promise<object> {
+        const {cpf_funcionario, cpf_salao} = data;
+        const Funcionario = await connection('funcionarios').where('cpf_salao', cpf_salao).where('cpf_funcionario',cpf_funcionario).delete();
+        if(Funcionario > 0){
+            const quntidadeFuncionario = await connection('salao').where('cpf_salao', cpf_salao).select('quantidade_funcionarios');
+            await connection('salao').where('cpf_salao', cpf_salao).update('quantidade_funcionarios', quntidadeFuncionario[0].quantidade_funcionarios - 1);
+        };
+        //limpar dados referente ao funcionario deletado na tabela agenda.
+        await connection('agenda').where('cpf_funcionario', cpf_funcionario).delete('*');
+        return {res: "Funcionário Deletado"};
+        //1210101010
+    };
 };

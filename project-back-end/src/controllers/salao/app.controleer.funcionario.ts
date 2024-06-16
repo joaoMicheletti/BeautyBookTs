@@ -13,5 +13,9 @@ export class FuncionarioController {
     @Post('/funcionarios')
     async ListarFuncionarios(@Body() data: FuncionarioDto): Promise<object> {
         return await this.funcionario.ListarFuncionarios(data);
+    };
+    @Post('/deletarfuncionario')
+    async DeletarFuncionario(@Body() data: FuncionarioDto): Promise<object> {
+        return await this.funcionario.DeletarFuncionario(data);
     }
 }
