@@ -13,6 +13,10 @@ export class HorarioFuncionamentoController {
     @Put('/horariofuncionamento')
     async EditarHorario(@Body() data: FuncionamentoDto): Promise<string> {
         return await this.horario.EditarHorario(data);
+    };
+    @Post('/deletarhorario')
+    async DeletarHorario(@Body() data: FuncionamentoDto): Promise<string> {
+        return await this.horario.DeletarHorario(data);
     }
 }
 

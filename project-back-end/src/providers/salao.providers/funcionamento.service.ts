@@ -28,5 +28,10 @@ export class Funcionamento {
         .update('fim_trabalhos', fim_trabalhos);
         return "Atualizado";
     };
+    async DeletarHorario(data: FuncionamentoDto): Promise<string> {
+        const {id} = data;
+        await connection('horarios').where('id', id).delete();
+        return 'Deletado';
+    };
 
 }
