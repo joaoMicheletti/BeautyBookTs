@@ -262,5 +262,19 @@ describe('Salon and services', () => {
       expect(response).toBe(response);
     });
   });
+  describe('serach all  employee of salon', () => {
+    it('serach all  employee of salon', async () => {
+      const Data =  {
+        cpf_salao: '10',
+        nome_completo: "Joao",
+        cpf_funcionario: "10201010",
+        senha: "1533"
+      };
+      jest.spyOn(connection('salao'), 'where').mockRejectedValue([]);
+      jest.spyOn(connection('salao'), 'select').mockRejectedValue([1]);
+      const response = await funcionario.RegisterFuncionario(Data);
+      expect(response).toBe(response);
+    });
+  });
 });
 //describe('Salon and ser', () => {});
