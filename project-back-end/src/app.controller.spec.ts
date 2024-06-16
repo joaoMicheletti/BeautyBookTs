@@ -8,21 +8,25 @@ import connection from './database/connection';
 import { Funcionamento } from './providers/salao.providers/funcionamento.service';
 // provider os agenda = schedule;
 import { Agenda } from './providers/salao.providers/agenda.service';
+// provider of employee
+import { Funcionario } from './providers/salao.providers/funcionario.service';
 
 describe('Salon and services', () => {
   let salaoRegister: SalaoRegister;
   let servico: Servicos;
   let funcionamento: Funcionamento;
   let agenda: Agenda;
+  let funcionario: Funcionario;
   beforeEach(async () => {
     const moduleRef: TestingModule = await Test.createTestingModule({
-      providers: [SalaoRegister,Servicos, Funcionamento, Agenda],
+      providers: [SalaoRegister,Servicos, Funcionamento, Agenda, Funcionario],
     }).compile();
 
     salaoRegister = moduleRef.get<SalaoRegister>(SalaoRegister);
     servico = moduleRef.get<Servicos>(Servicos);
     funcionamento = moduleRef.get<Funcionamento>(Funcionamento);
     agenda = moduleRef.get<Agenda>(Agenda);
+    funcionario = moduleRef.get<Funcionario>(Funcionario);
   });
   afterEach(() => {
     jest.clearAllMocks(); // Limpar todos os mocks após cada teste
@@ -242,6 +246,20 @@ describe('Salon and services', () => {
       jest.spyOn(connection('agenda'), 'where').mockResolvedValue([]);
       jest.spyOn(connection('agenda'), 'select').mockRejectedValue([1]);
       const response = await agenda.BuscarFuncionario(Data);      
+    });
+  });
+  describe('Register a employee', () => {
+    it('Register a employee', async () => {
+      const Data =  {
+        cpf_salao: '10',
+        nome_completo: "Joao",
+        cpf_funcionario: "10201010",
+        senha: "1533"
+      };
+      jest.spyOn(connection('salao'), 'where').mockRejectedValue([]);
+      jest.spyOn(connection('salao'), 'select').mockRejectedValue([1]);
+      const response = await funcionario.RegisterFuncionario(Data);
+      expect(response).toBe(response);
     });
   });
 });
