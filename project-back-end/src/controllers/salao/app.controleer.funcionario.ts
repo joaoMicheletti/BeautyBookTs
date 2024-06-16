@@ -9,5 +9,9 @@ export class FuncionarioController {
     @Post('/funcionario')
     async RegisterFuncionario(@Body() data:FuncionarioDto): Promise<object> {
         return await this.funcionario.RegisterFuncionario(data);
+    };
+    @Post('/funcionarios')
+    async ListarFuncionarios(@Body() data: FuncionarioDto): Promise<object> {
+        return await this.funcionario.ListarFuncionarios(data);
     }
 }

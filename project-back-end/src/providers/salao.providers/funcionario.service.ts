@@ -25,5 +25,10 @@ export class Funcionario{
             };
         }
         return info;
+    };
+    async ListarFuncionarios(data: FuncionarioDto): Promise<object> {
+        const {cpf_salao} = data;
+        const List = await connection('funcionarios').where('cpf_salao', cpf_salao).select('*');
+        return List;
     }
 };
