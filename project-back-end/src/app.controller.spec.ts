@@ -193,6 +193,21 @@ describe('Salon and services', () => {
       jest.spyOn(connection('horarios'), 'delete').mockResolvedValue([1]);
       const response = await funcionamento.DeletarHorario(Data);
       expect(response).toBe('Deletado');
+    });
+  });
+  describe('List all opening hours of salon', () => {
+    it('List all opening hours of salon', async () => {
+      const Data = {
+        cpf_salao: "10",
+        dia: "terça",
+        inicio_trabalhos: "08:00",
+        fim_trabalhos: "18:00",
+        id: "2"
+      };
+      jest.spyOn(connection('horarios'), 'where').mockResolvedValueOnce([]);
+      jest.spyOn(connection('horarios'), 'select').mockResolvedValue([1]);
+      const response = await funcionamento.Listar(Data);
+      expect(response).toBe(response);
 
     });
   });
