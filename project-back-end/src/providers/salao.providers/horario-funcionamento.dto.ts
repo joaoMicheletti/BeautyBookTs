@@ -3,6 +3,6 @@ export class FuncionamentoDto {
     dia: string;
     inicio_trabalhos: string;
     fim_trabalhos: string;
-    id: string;
+    id: string
 
 };

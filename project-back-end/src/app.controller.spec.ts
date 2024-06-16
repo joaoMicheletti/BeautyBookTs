@@ -28,7 +28,7 @@ describe('Salon and services', () => {
     it('Register a new salon', async () => {
       // Dados simulados para registro de um novo salão
       const salaoData = {
-        cpf_salao: '4155216280000040030000010', // cpf ficticio
+        cpf_salao: '415521628000004440030000010', // cpf ficticio
         nome_salao: 'Salão Teste',
         endereco: 'Rua Teste, 123',
         cep: '06612100',
@@ -154,7 +154,8 @@ describe('Salon and services', () => {
         cpf_salao: "10",
         dia: "terça",
         inicio_trabalhos: "08:00",
-        fim_trabalhos: "18:00"
+        fim_trabalhos: "18:00",
+        id: '0'
       };
       jest.spyOn(connection('horarios'), 'where').mockResolvedValue([]);
       jest.spyOn(connection('horarios'), 'insert').mockResolvedValue([1]);
@@ -168,12 +169,30 @@ describe('Salon and services', () => {
         cpf_salao: "10",
         dia: "terça",
         inicio_trabalhos: "08:00",
-        fim_trabalhos: "18:00"
+        fim_trabalhos: "18:00",
+        id: ""
       };
       jest.spyOn(connection('horarios'), 'where').mockResolvedValue([]);
       jest.spyOn(connection('horarios'), 'update').mockResolvedValue([1]);
       const response = await funcionamento.EditarHorario(Data);
       expect(response).toBe('Atualizado');
+
+    });
+  });
+  // Delete a opening hours
+  describe('Delete a opening hours', () => {
+    it('Delete a opening hours', async () => {
+      const Data = {
+        cpf_salao: "10",
+        dia: "terça",
+        inicio_trabalhos: "08:00",
+        fim_trabalhos: "18:00",
+        id: "2"
+      };
+      jest.spyOn(connection('horarios'), 'where').mockResolvedValue([]);
+      jest.spyOn(connection('horarios'), 'delete').mockResolvedValue([1]);
+      const response = await funcionamento.DeletarHorario(Data);
+      expect(response).toBe('Deletado');
 
     });
   });
