@@ -6,19 +6,23 @@ import { Servicos } from './providers/salao.providers/servicos.service';
 import connection from './database/connection'; 
 //provider of Funcionamento
 import { Funcionamento } from './providers/salao.providers/funcionamento.service';
+// provider os agenda = schedule;
+import { Agenda } from './providers/salao.providers/agenda.service';
 
 describe('Salon and services', () => {
   let salaoRegister: SalaoRegister;
   let servico: Servicos;
   let funcionamento: Funcionamento;
+  let agenda: Agenda;
   beforeEach(async () => {
     const moduleRef: TestingModule = await Test.createTestingModule({
-      providers: [SalaoRegister,Servicos, Funcionamento],
+      providers: [SalaoRegister,Servicos, Funcionamento, Agenda],
     }).compile();
 
     salaoRegister = moduleRef.get<SalaoRegister>(SalaoRegister);
     servico = moduleRef.get<Servicos>(Servicos);
     funcionamento = moduleRef.get<Funcionamento>(Funcionamento);
+    agenda = moduleRef.get<Agenda>(Agenda);
   });
   afterEach(() => {
     jest.clearAllMocks(); // Limpar todos os mocks após cada teste
@@ -204,11 +208,26 @@ describe('Salon and services', () => {
         fim_trabalhos: "18:00",
         id: "2"
       };
-      jest.spyOn(connection('horarios'), 'where').mockResolvedValueOnce([]);
+      jest.spyOn(connection('horarios'), 'where').mockResolvedValue([]);
       jest.spyOn(connection('horarios'), 'select').mockResolvedValue([1]);
       const response = await funcionamento.Listar(Data);
       expect(response).toBe(response);
 
+    });
+  });
+  describe('List schedule of salon', () => {
+    it('List schedule of salon', async () => {
+      const Data = {
+        dia: '10',
+        mes: '5',
+        ano: '2024',
+        cpf_salao: '10',
+        cpf_funcionario: '102030'
+      };
+      jest.spyOn(connection('agenda'), 'where').mockRejectedValue([]);
+      jest.spyOn(connection('agenda'), 'select').mockRejectedValue([1]);
+      const response = await agenda.BuscarAgendaSalao(Data);
+      expect(response).toBe(response);
     });
   });
 });

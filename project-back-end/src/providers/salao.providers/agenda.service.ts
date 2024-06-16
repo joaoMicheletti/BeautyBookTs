@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import {AgendaSalaoDto} from './agenda-salao.dto';
-import connection from "src/database/connection";
+import connection from "../../database/connection";
 @Injectable()
 export class Agenda {
     async BuscarAgendaSalao(data: AgendaSalaoDto): Promise<object> {
