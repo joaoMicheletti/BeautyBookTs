@@ -276,5 +276,19 @@ describe('Salon and services', () => {
       expect(response).toBe(response);
     });
   });
+  describe('Delete a employeee', () => {
+    it('Delete a employee', async () => {
+      const Data =  {
+        cpf_salao: '10',
+        nome_completo: "Joao",
+        cpf_funcionario: "10201010",
+        senha: "1533"
+      };
+      jest.spyOn(connection('funcionarios'), 'where').mockRejectedValue([]);
+      jest.spyOn(connection('funcionarios'), 'delete').mockRejectedValue([1]);
+      const response = await funcionario.DeletarFuncionario(Data);
+      expect(response).toBe(response);
+    });
+  });
 });
 //describe('Salon and ser', () => {});
