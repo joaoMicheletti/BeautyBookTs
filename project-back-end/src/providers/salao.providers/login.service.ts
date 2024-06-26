@@ -148,4 +148,9 @@ export class Login {
 
         return { res: 'Erro na solicitação' };
     };
+    async StatusAssinatura(data : LoginDto): Promise<object>{
+        const {cpf_salao} = data;
+        console.log(cpf_salao);
+        return {};
+    }
 };

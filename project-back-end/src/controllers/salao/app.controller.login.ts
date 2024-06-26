@@ -10,5 +10,9 @@ export class LoginController{
     @Post('/loginsalao')
     async LoginSalao(@Body() data: LoginDto): Promise<object>{
         return await this.login.LoginSalao(data);
+    };
+    @Post('/assinatura')
+    async StatusAssinatura(@Body() data:LoginDto): Promise<object> {
+        return await this.login.StatusAssinatura(data);
     }
 }

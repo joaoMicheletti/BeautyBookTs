@@ -21,7 +21,17 @@ import { Funcionario } from './providers/salao.providers/funcionario.service';
 //controller e provider de login  
 import { LoginController } from './controllers/salao/app.controller.login';
 import { Login } from './providers/salao.providers/login.service';
-
+// controller e provider de gestao
+import {GestaoEntradaController}  from './controllers/salao/gestao/app.controller.gestao.entrada';
+import { GestaoController } from './controllers/salao/gestao/app.controller.gestao.diario';
+import { Gestao } from './providers/salao.providers/gestao.providers/gestao.service';
+import { GestaoEntrada } from './providers/salao.providers/gestao.providers/getao.entrada.sevice';
+// controller e provider do cpanel 
+import { CpanelController } from './controllers/cpanel/app.controlle.cpanel';
+import { Cpanel } from './providers/cpanel/cpanel.service';
+// controller e provider dos clientes
+import { ClienteContrller } from './controllers/cliente/app.controller.cliente';
+import { Cliente } from './providers/cliente/cliente.service';;
 
 @Module({
   imports: [],
@@ -32,7 +42,10 @@ import { Login } from './providers/salao.providers/login.service';
     HorarioFuncionamentoController,
     AgendaController,
     FuncionarioController,
-    LoginController
+    LoginController,
+    GestaoController, GestaoEntradaController,
+    CpanelController,
+    ClienteContrller,
   ],
   providers: [
     SalaoRegister,
@@ -41,7 +54,10 @@ import { Login } from './providers/salao.providers/login.service';
     Funcionamento,
     Agenda,
     Funcionario,
-    Login
+    Login,
+    Gestao, GestaoEntrada,
+    Cpanel,
+    Cliente,
   ],
 })
 export class AppModule {}
