@@ -37,15 +37,6 @@ export class AjustesController {
     async SenhaFuncionario(@Body() data: AjustesDto): Promise<object> {
         return await this.ajustes.SenhaFuncionario(data);
     };
-    /**
-    @Post('/logo')
-    @UseInterceptors(FileInterceptor('image', MulterConfig))
-    async AdicionarImagem(@UploadedFile() file: Express.Multer.File, @Body() data: AjustesDto): Promise<object> {
-        console.log('here');
-        const uploadImagemDto: UploadImagemDto = { file, data };
-        return this.ajustes.AdicionarImagem(uploadImagemDto);
-    }*/
-
     @Post('/logosalao')
     async LogoSalao(@Body() data: AjustesDto): Promise<object> {
         return await this.ajustes.LogoSalao(data);

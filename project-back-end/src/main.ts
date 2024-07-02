@@ -6,14 +6,12 @@ import * as path from 'path';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  // Caminho absoluto para o diretório estático
-  const publicDir = path.join(__dirname, '..', 'public');
-
   // Configuração do diretório estático
-  app.use('/img', express.static(publicDir));
+  const publicDir = path.join(__dirname, '..', 'src', 'public'); // Ajuste o caminho para refletir a estrutura após a compilação
+  app.use('/image', express.static(publicDir));
 
   await app.listen(3000);
-  console.log(`Aplicação rodando em: http://localhost:3000`);
+  console.log(`Aplicação rodando em: http://localhost:3000 ${publicDir}`);
 }
 
 bootstrap();

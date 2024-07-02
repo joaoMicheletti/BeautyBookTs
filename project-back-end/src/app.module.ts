@@ -31,10 +31,12 @@ import { CpanelController } from './controllers/cpanel/app.controlle.cpanel';
 import { Cpanel } from './providers/cpanel/cpanel.service';
 // controller e provider dos clientes
 import { ClienteContrller } from './controllers/cliente/app.controller.cliente';
-import { Cliente } from './providers/cliente/cliente.service';;
+import { Cliente } from './providers/cliente/cliente.service';
+import { UploadModule } from './controllers/ajustes/UploadModule';
+
 
 @Module({
-  imports: [],
+  imports: [UploadModule],
   controllers: [
     RegisterSalaoController,
     AssinaturaPlanoController,
