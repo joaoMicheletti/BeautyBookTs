@@ -4,10 +4,17 @@ import connection from "../../database/connection";
 @Injectable()
 export class Agenda {
     async BuscarAgendaSalao(data: AgendaSalaoDto): Promise<object> {
-        const { dia, mes, ano, cpf_salao, cpf_funcionario} = data;
-        const ListaSalao = await connection('agenda').where('cpf_salao', cpf_salao)
+        const { dia, mes, ano, cpf_salao} = data;
+        console.log(dia, mes, ano, cpf_salao)
+        const agendaBusca = await connection('agenda').where('cpf_salao', cpf_salao)
         .where('dia', dia).where('mes', mes).where('ano', ano).select('*');
-        return ListaSalao;
+        console.log(agendaBusca);
+        if(agendaBusca.length === 0){
+            return {res: 'nenhum agendamento encontrado.'}
+        }else {
+            return agendaBusca;
+        };
+                
     };
     async BuscarFuncionario(data: AgendaSalaoDto): Promise<object> {
         const { dia, mes, ano, cpf_salao, cpf_funcionario} = data; 
@@ -16,5 +23,4 @@ export class Agenda {
         .where('mes', mes).where('ano', ano).select('*');
         return response;
     }
-
-}
+};
