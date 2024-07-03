@@ -21,6 +21,9 @@ import { Funcionario } from './providers/salao.providers/funcionario.service';
 //controller e provider de login  
 import { LoginController } from './controllers/salao/app.controller.login';
 import { Login } from './providers/salao.providers/login.service';
+//controller e provider de pagamento 
+import {SdkMercadopagoController} from './controllers/salao/pagamento/app.controller.sdkMp';
+import { SdkMp } from './providers/salao.providers/pagamento.providers/sdkMp.service';
 // controller e provider de gestao
 import {GestaoEntradaController}  from './controllers/salao/gestao/app.controller.gestao.entrada';
 import { GestaoController } from './controllers/salao/gestao/app.controller.gestao.diario';
@@ -48,6 +51,7 @@ import { UploadModule } from './controllers/ajustes/UploadModule';
     GestaoController, GestaoEntradaController,
     CpanelController,
     ClienteContrller,
+    SdkMercadopagoController,
   ],
   providers: [
     SalaoRegister,
@@ -60,6 +64,7 @@ import { UploadModule } from './controllers/ajustes/UploadModule';
     Gestao, GestaoEntrada,
     Cpanel,
     Cliente,
+    SdkMp
   ],
 })
 export class AppModule {}
