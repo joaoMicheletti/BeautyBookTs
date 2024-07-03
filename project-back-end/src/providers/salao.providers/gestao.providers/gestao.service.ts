@@ -12,6 +12,7 @@ export class Gestao {
         var ano = DATA.getFullYear();
         var quantiFinalinado = await connection('agenda').where('cpf_salao', cpf_salao)
         .where('dia', dia).where('mes', mes).where('ano', ano).where('status_servico', 'finalizado').select('*');
+        console.log('bruto finalizado diario >>>>', quantiFinalinado);
         var finalizado = quantiFinalinado.length;
         var total = 0;
         var loop = 0;

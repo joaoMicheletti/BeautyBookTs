@@ -1,6 +1,6 @@
 export class AjustesDto {
     cpf:string;
-    logo_salao: File;
+    logo_salao: string;
     cpf_salao:string;
     cpf_funcionario:string;
     intervalo_entre_agendamentos: string;

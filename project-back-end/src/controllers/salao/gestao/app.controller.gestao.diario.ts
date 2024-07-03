@@ -5,7 +5,7 @@ import {GestaoDto} from '../../../providers/salao.providers/gestao.providers/ges
 export class GestaoController {
     constructor(private readonly gestao: Gestao){}
     //routes.post('/relatoriodiario', Diaria.FinalizadosDiarios);
-    @Post('/relatioriodiario')
+    @Post('relatoriodiario')
     async FinalizadosDiarios(@Body() data: GestaoDto): Promise<object> {
         return await this.gestao.FinalizadosDiarios(data);
     };

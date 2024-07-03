@@ -36,6 +36,9 @@ import { Cpanel } from './providers/cpanel/cpanel.service';
 import { ClienteContrller } from './controllers/cliente/app.controller.cliente';
 import { Cliente } from './providers/cliente/cliente.service';
 import { UploadModule } from './controllers/ajustes/UploadModule';
+//import controllrer de ajustes e providers
+import { AjustesController } from './controllers/ajustes/app.controller.ajustes';
+import { Ajustes } from './providers/ajustes/ajustes.service';
 
 
 @Module({
@@ -52,6 +55,7 @@ import { UploadModule } from './controllers/ajustes/UploadModule';
     CpanelController,
     ClienteContrller,
     SdkMercadopagoController,
+    AjustesController,
   ],
   providers: [
     SalaoRegister,
@@ -64,7 +68,8 @@ import { UploadModule } from './controllers/ajustes/UploadModule';
     Gestao, GestaoEntrada,
     Cpanel,
     Cliente,
-    SdkMp
+    SdkMp,
+    Ajustes
   ],
 })
 export class AppModule {}

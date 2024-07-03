@@ -8,7 +8,6 @@ export class UploadController {
   uploadFile(@UploadedFile() file: Express.Multer.File) {
     console.log(file); // Log do arquivo para depuração
     return {
-      message: 'Arquivo enviado com sucesso!',
       filename: file.filename,
     };
   }

@@ -11,6 +11,7 @@ export class Ajustes {
     //salvando o nome da img no banco de dados junto ao seu salão 
     async LogoSalao(data : AjustesDto): Promise<object>{
         const {logo_salao, cpf_salao} = data;
+        console.log("logo salao e cpf <><><><><><><><:><><><<><><><", logo_salao, cpf_salao);
         const list = await connection('salao').where('cpf_salao', cpf_salao)
         .update('logo_salao', logo_salao);
         return {list};
