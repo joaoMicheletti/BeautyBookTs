@@ -71,6 +71,7 @@ export class Cliente {
             persent50,
             status_servico
         } = data;
+        console.log('request horaios livres',data)
         
         //cpf_funcionario não veio no corpo da request.
         if(cpf_funcionario === undefined){
@@ -102,6 +103,7 @@ export class Cliente {
             //buscar no banco de dados o horario de funcionamento do dia.
             var info_funcionario = await connection('funcionarios').where('cpf_funcionario', cpf_funcionario).select('*'); 
             const funcionamento = await connection('horarios').where('cpf_salao', info_funcionario[0].cpf_salao).where('dia', dia_semana).select('*');
+            console.log('<><><><><', info_funcionario)
             if(hora < funcionamento[0].inicio_trabalhos){ //salão não está aberto ainda!.
                 return ("Fora do Horário de funcionamento.");
             } else if(hora > funcionamento[0].fim_trabalhos){ // salão já está fechado nessa hora; 
