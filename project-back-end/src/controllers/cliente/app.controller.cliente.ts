@@ -31,7 +31,7 @@ export class ClienteContrller {
         return await this.cliente.UpdateStatusServicoCancelar(data);
     };
     //rot pa finalizar um serviço
-    @Put('/finalizarservico') 
+    @Put('/finalizarservico')
     async UpdateStatusServicoFinalizar(@Body() data: ClienteDto): Promise<string> {
         return await this.cliente.UpdateStatusServicoFinalizar(data);
     };

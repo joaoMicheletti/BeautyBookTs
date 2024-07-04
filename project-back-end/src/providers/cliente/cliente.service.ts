@@ -57,7 +57,7 @@ export class Cliente {
                 return 'você excedeu o limite de prazo para agendamentos futuros';
             }
         }
-    }
+    };
     //função para ver se  a agenda está liberada no horaio e na data;
     async ConsultarEspacoLivreNaAgenda(data: ClienteDto): Promise<string>{
         const {
@@ -100,6 +100,7 @@ export class Cliente {
                 return ('Horário já ocupado');
             };
         } else if(cpf_salao === undefined){
+            console.log(cpf_salao);
             //buscar no banco de dados o horario de funcionamento do dia.
             var info_funcionario = await connection('funcionarios').where('cpf_funcionario', cpf_funcionario).select('*'); 
             const funcionamento = await connection('horarios').where('cpf_salao', info_funcionario[0].cpf_salao).where('dia', dia_semana).select('*');
@@ -227,20 +228,14 @@ export class Cliente {
     async UpdateStatusServicoCancelar(data: ClienteDto): Promise<string>{
         const {id} = data;
         const lista = await connection('agenda').where('id', id).update('status_servico', 'cancelado');
-        if(lista.length > 0){
-            return 'Serviço Cancelado';
-        }else {
-            return 'Erro ao Cancelar Servoço';
-        };
+        return 'Serviço finalizado';
     };
     //função para atualizar o status do serviço para finalizado;
     async UpdateStatusServicoFinalizar(data: ClienteDto): Promise<string>{
         const {id} = data;
+        console.log('id><><><><><><><><><><><><><><><><><><<><>', id);
         const lista = await connection('agenda').where('id', id).update('status_servico', 'finalizado');
-        if(lista.length > 0){
-            return ('Serviço Finalizado');
-        } else {
-            return ('Erro ao Finalizar o Serviço');
-        };
+        console.log(lista);
+        return ('Serviço finalizado');  
     };
 }

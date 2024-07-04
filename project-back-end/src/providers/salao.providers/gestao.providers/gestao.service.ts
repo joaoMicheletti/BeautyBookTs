@@ -6,12 +6,14 @@ import connection from "src/database/connection";
 export class Gestao {
     async FinalizadosDiarios(data : GestaoDto): Promise<object> {
         const  {cpf_salao} = data;
+        console.log("finalizado diarios <><><><><>_", cpf_salao);
         var DATA = new Date();
         var dia = DATA.getDate();
         var mes = DATA.getMonth();
+        console.log(mes)
         var ano = DATA.getFullYear();
         var quantiFinalinado = await connection('agenda').where('cpf_salao', cpf_salao)
-        .where('dia', dia).where('mes', mes).where('ano', ano).where('status_servico', 'finalizado').select('*');
+        .where('dia', dia).where('mes', mes + 1).where('ano', ano).where('status_servico', 'finalizado').select('*');
         console.log('bruto finalizado diario >>>>', quantiFinalinado);
         var finalizado = quantiFinalinado.length;
         var total = 0;
