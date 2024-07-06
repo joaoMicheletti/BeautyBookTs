@@ -6,15 +6,19 @@ import connection from "src/database/connection";
 export class Cliente {
     async AgendamentosFuturos(data: ClienteDto): Promise<string>{
         const {cpf_salao, cpf_funcionario, data_atual, dia, mes, ano} = data;
+        
         //não veio o dado cpf_saloa;
         if (cpf_salao === undefined) {
+            console.log('<><><><><><><',cpf_funcionario)
             const Lista = await connection('funcionarios')
                 .where('cpf_funcionario', cpf_funcionario)
                 .select('cpf_salao');
+            console.log('list <><><>',Lista);
             const SalaoFuncionario = await connection('salao')
                 .where('cpf_salao', Lista[0].cpf_salao);
-    
+            console.log("salao Funcionario <><><>", SalaoFuncionario);
             var AgeendamentoAte = SalaoFuncionario[0].permitir_agendamento_ate;
+            console.log('agendamento ate ><><><>', AgeendamentoAte);
             
             var partes = data_atual.split('/');
             var Dia = parseInt(partes[0], 10);
@@ -23,6 +27,7 @@ export class Cliente {
             
             var dataAtual = new Date(Ano, Mes, Dia);
             dataAtual.setDate(dataAtual.getDate() + AgeendamentoAte);
+            console.log('data mais soma ',dataAtual);
     
             var dataString = `${ano}/${mes}/${dia}`;
             var DataFormatadaParaServico = new Date(dataString);
@@ -31,8 +36,7 @@ export class Cliente {
                 return 'Dentro do limite para Agendamentos futuros';
             } else {
                 return 'você excedeu o limite de prazo para agendamentos futuros';
-            }
-    
+            };////    
         } else if (cpf_funcionario === undefined) {
             const Lista = await connection('salao')
                 .where('cpf_salao', cpf_salao)
@@ -148,6 +152,7 @@ export class Cliente {
             persent50,
             status_servico
         } = data;
+        console.log('data criar ag ',data);
         //agendar para salão ...
         if(cpf_funcionario === undefined){
             var termino = await connection('salao').where('cpf_salao', cpf_salao).select('intervalo_entre_agendamentos');

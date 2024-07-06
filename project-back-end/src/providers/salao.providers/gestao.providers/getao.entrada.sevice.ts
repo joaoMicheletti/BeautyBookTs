@@ -6,20 +6,28 @@ import connection from 'src/database/connection';
 export class GestaoEntrada {
     async RelatorioDeEntrada(data: GestaoDto): Promise<object>{
         const {cpf_salao} = data;
+        console.log(cpf_salao);
         var result = await connection('agenda').where('cpf_salao', cpf_salao).where('status_servico', 'finalizado').select("*");
+        console.log('busca - relatório <><><<><><<',result);
         if(result.length === 0){
             return {resp:"Nada encontrado"};
         };
+        console.log('not is empty')
         var quantidade = result.length;
         var valorTotal = 0;
         var indice = 0;
-        for( indice < result.length; indice += 1;) {
-            valorTotal += result[indice].preco;
+        while (indice < result.length){
+            console.log(indice);
+            valorTotal = result[indice].preco;
+            indice += 1;
+
         };
+        console.log('exit')
         var relatorio = {
             'valorTotal': valorTotal,
             'quantidade': quantidade
         };
+        console.log(relatorio);
         return relatorio;
     };
     async RelatorioMes(data: GestaoDto): Promise<object>{
@@ -31,8 +39,8 @@ export class GestaoEntrada {
         var quantidade = result.length;
         var valorTotal = 0;
         var indice = 0;
-        for( indice < result.length; indice ++;){
-            valorTotal += result[indice].preco;
+        while(indice < result.length){
+            valorTotal += result[indice].preco
         };
         var relatorio = {
             'valorTotal': valorTotal,
