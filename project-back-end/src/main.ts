@@ -17,7 +17,8 @@ async function bootstrap() {
   app.enableCors(corsOptions);
 
   // Configuração do diretório estático
-  const publicDir = path.join(__dirname, '..', 'src', 'public'); // Ajuste o caminho para refletir a estrutura após a compilação
+  const publicDir = path.join(__dirname, '..', '..', 'src', 'public'); // Ajuste o caminho para refletir a estrutura após a compilação
+
   app.use('/image', express.static(publicDir));
 
   await app.listen(1998);
