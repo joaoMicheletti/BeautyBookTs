@@ -21,6 +21,9 @@ export class Agenda {
         const response = await connection('agenda')
         .where('cpf_funcionario', cpf_funcionario).where('dia', dia)
         .where('mes', mes).where('ano', ano).select('*');
+        if(response.length === 0){
+            return {res: "nenhum agendamento encontrado "};
+        }
         return response;
     }
 };
