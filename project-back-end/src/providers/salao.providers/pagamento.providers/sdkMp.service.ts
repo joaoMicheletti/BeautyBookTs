@@ -1,16 +1,20 @@
 import { Injectable } from '@nestjs/common';
 import { SdkMercadopagoDto } from './sdkMp.dto';
 import { MercadoPagoConfig, Preference } from 'mercadopago';
+import connection from 'src/database/connection';
 
 @Injectable()
 export class SdkMp {
     async Preferenceid(data: SdkMercadopagoDto): Promise<object> {
+        console.log(data);
         // Adicione as credenciais
         const client = new MercadoPagoConfig({ accessToken: 'APP_USR-8723383960512742-032820-a2fe03f8211f0538df7bb3b7177ebc42-294751990' });
         const { plano, quantidade, preco, x } = data;
         let Preco = 0;
         if (plano === 'plano individual') {
+            console.log(plano)
             Preco += 50;
+            
         } else if (plano === "plano personalizado") {
             Preco += (parseInt(x) * 50);
         }
@@ -25,21 +29,71 @@ export class SdkMp {
                             "currency_id": "BRL",
                             "description": "Descrição do Item",
                             "quantity": 1,
-                            "unit_price": parseFloat(preco)
+                            "unit_price": Preco
                         }
                     ],
                     "back_urls": {
-                        "success": "https://www.seu-site/success",
-                        "failure": "http://www.seu-site/failure",
-                        "pending": "http://www.seu-site/pending"
+                        "success": "https://127.0.0.1:3000/pendente/",
+                        "failure": "http://127.0.0.1:3000/pendente/",
+                        "pending": "http://127.0.0.1:3000/pendente/"
                     },
                     "auto_return": "approved",
                 }
             });
+            console.log(response.id);
             return { id: response.id };
         } catch (error) {
             console.log(error);
             throw new Error('Erro ao criar a preferência de pagamento');
+        };
+    };
+    async BuscarPagamento(data: SdkMercadopagoDto): Promise<object>{
+        console.log(data, 'oi');
+        const {paymentId} = data;
+        const axios = require('axios');
+        const YOUR_ACCESS_TOKEN = 'APP_USR-8723383960512742-032820-a2fe03f8211f0538df7bb3b7177ebc42-294751990'; // Substitua pelo seu token de acesso
+        const apiUrl = `https://api.mercadopago.com/v1/payments/${paymentId}`;
+        const config = {
+          headers: {
+            Authorization: `Bearer ${YOUR_ACCESS_TOKEN}`,
+          },
+        };
+        try {
+            const response = await axios.get(apiUrl, config);
+            const Dados = response.data;
+        
+            if (Dados.status === 'pending') {
+              console.log(Dados.status); // status do pagamento pending, failure, success
+              const status = Dados.status;
+              console.log(status);
+              const id = Dados.payment_method.id;
+              const Resp = { status, id };
+              return Resp;
+            } else if (Dados.status === 'approved') {
+              const status = Dados.status;
+              const description = Dados.description;
+              const Data = {
+                status,
+                description
+              };
+              console.log(Data);
+              return Data;
+            } else {
+              return { resp: 'recusado' };
+            }
+        } catch (error) {
+            console.error('Erro na solicitação:', error);
+            throw error;
+        };
+    };
+        //função responsável por salvar o pymentId no data base;
+        //caso o pagamento sejá pendente, boleto ou pec;
+        async Pending(data: SdkMercadopagoDto): Promise<object>{
+            console.log(data)
+          const {salao, paymentId} = data;
+          //inserindo o pymentId no dataBase;
+          var verificar = await connection('salao').where('cpf_salao', salao).update('pendente', paymentId);
+          console.log(">>>>>>:", salao, ">>>>>>>>>>>",verificar);
+          return verificar;
         }
-    }
 };

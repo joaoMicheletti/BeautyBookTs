@@ -3,4 +3,6 @@ export class SdkMercadopagoDto {
     quantidade: string;
     preco: string;
     x: string;
+    paymentId: string;
+    salao: string;
 }

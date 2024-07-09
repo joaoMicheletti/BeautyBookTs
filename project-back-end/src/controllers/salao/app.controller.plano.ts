@@ -7,8 +7,8 @@ export class AssinaturaPlanoController {
     //contrutor - service - provider
     constructor(private readonly plano: AssinaturaPlano) {};
     
-    @Put('plano')
-    async Assinatura(@Body() data: AssinaturaPlanoDto): Promise<string> {
+    @Put('/plano')
+    async Assinatura(@Body() data: AssinaturaPlanoDto): Promise<object> {
     //console.log(rregister);
     return await this.plano.Assinatura(data);
   }

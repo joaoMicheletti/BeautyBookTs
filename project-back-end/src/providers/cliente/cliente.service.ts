@@ -160,8 +160,9 @@ export class Cliente {
             //simplificando a hora.
             var horas = Math.floor(termino[0].intervalo_entre_agendamentos / 60); // Obtém a parte inteira das horas
             var minutosRestantes = termino[0].intervalo_entre_agendamentos % 60; // Obtém os minutos restantes
-            var valorFormatado = horas + "." + minutosRestantes;
+            var valorFormatado = horas + "." + minutosRestantes.toFixed(2);
             var hora_termino = parseFloat(valorFormatado) + hora;
+            console.log("HORA TERMino ><><><><><><><><><= ", hora_termino);
             
             const Data =  {
                 cpf_salao,
