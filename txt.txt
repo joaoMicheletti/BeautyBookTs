@@ -1,3 +1,4 @@
-ngrok.exe http --domain=useful-incredibly-goldfish.ngrok-free.app 1998
+./ngrok.exe http --domain=useful-incredibly-goldfish.ngrok-free.app 1998
 back
-ngrok.exe config add-authtoken 1wTM5IIFSOvIjtkLICRmTQMIRtV_4Tn4xRBkJE4kTtsKsY9Je 
+./ngrok.exe config add-authtoken 1wTM5IIFSOvIjtkLICRmTQMIRtV_4Tn4xRBkJE4kTtsKsY9Je 
+https://useful-incredibly-goldfish.ngrok-free.app
