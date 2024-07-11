@@ -156,12 +156,12 @@ export class Cliente {
         //agendar para salão ...
         if(cpf_funcionario === undefined){
             var termino = await connection('salao').where('cpf_salao', cpf_salao).select('intervalo_entre_agendamentos');
+            console.log(termino, 'trmino do salão ');
             
             //simplificando a hora.
-            var horas = Math.floor(termino[0].intervalo_entre_agendamentos / 60); // Obtém a parte inteira das horas
-            var minutosRestantes = termino[0].intervalo_entre_agendamentos % 60; // Obtém os minutos restantes
-            var valorFormatado = horas + "." + minutosRestantes.toFixed(2);
-            var hora_termino = parseFloat(valorFormatado) + hora;
+            var horas = Math.floor(termino[0].intervalo_entre_agendamentos);
+            console.log(horas, 'int horas')
+            var hora_termino = hora + horas
             console.log("HORA TERMino ><><><><><><><><><= ", hora_termino);
             
             const Data =  {
