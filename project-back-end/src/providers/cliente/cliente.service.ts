@@ -88,14 +88,18 @@ export class Cliente {
             } else if(hora >= funcionamento[0].inicio_trabalhos && hora <= funcionamento[0].fim_trabalhos){// dentro do horário de funcionamento;
                 var agendamentos_anteriores = await connection('agenda').where('cpf_salao', cpf_salao)
                 .where('dia', dia).where('mes', mes).where('ano', ano).where('hora', '<=', hora).where('hora_termino', '>' ,hora);
+                console.log(agendamentos_anteriores.length);
                 if(agendamentos_anteriores.length === 0){ //não possui conflito com agendamento anterior
                     //evitar conflito com agendamentos já marcados mais a frente.
                     var termino_agendamento_atual = await connection('salao').where('cpf_salao', cpf_salao).select('intervalo_entre_agendamentos');
+                    console.log('interval:', termino_agendamento_atual);
                     //simplificando a hora.
                     var horas = termino_agendamento_atual[0].intervalo_entre_agendamentos; // Obtém o intervalo entre agenamentos;
                     var hora_termino = horas + hora;
+                    console.log('Hora termino:', hora_termino);
                     var proximo_agendamento = await connection('agenda').where('cpf_salao', cpf_salao)
-                    .where('hora', '>', hora).where('hora', '<', hora_termino);
+                    .where('hora', '>', hora).where('hora', '<', hora_termino).where('status_servico', 'agendado');
+                    console.log(proximo_agendamento);
                     if(proximo_agendamento.length === 0){ //nao tem conflito com o proximo agendado
                         return ('agendamento permitido');
                     };
