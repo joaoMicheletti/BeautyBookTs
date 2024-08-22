@@ -14,9 +14,16 @@ export class SdkMp {
         if (plano === 'plano individual') {
             console.log(plano)
             Preco += 50;
-            
+            console.log(Preco)
+        }else if(plano === "plano individual Anoal"){
+            Preco +=((parseInt(quantidade) *50)*12)-(((parseInt(quantidade) *50)*12)*0.20);
+            console.log(Preco);
         } else if (plano === "plano personalizado") {
             Preco += (parseInt(x) * 50);
+            console.log(Preco)
+        } else if (plano === "plano personalizado Anoal") {
+            Preco += ((parseInt(x) *50)*12)-(((parseInt(x) *50)*12)*0.20);
+            console.log(Preco, 'this')
         }
         const preference = new Preference(client);
         try {
@@ -41,6 +48,7 @@ export class SdkMp {
                 }
             });
             console.log(response.id);
+            console.log(response);
             return { id: response.id };
         } catch (error) {
             console.log(error);
