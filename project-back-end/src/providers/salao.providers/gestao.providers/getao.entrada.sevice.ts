@@ -32,7 +32,9 @@ export class GestaoEntrada {
     };
     async RelatorioMes(data: GestaoDto): Promise<object>{
         const {mes, cpf_salao} = data;
+        console.log(mes)
         var result = await connection('agenda').where('cpf_salao',cpf_salao).where('mes', mes).where('status_servico', 'finalizado').select('*');
+        console.log(result);
         if(result.length === 0){
             return {resp: "Nada encontrado"}
         };
