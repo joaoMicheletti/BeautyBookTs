@@ -13,10 +13,11 @@ export class Funcionario{
         } = data;
         const Data = data;
         const info = await connection('salao').where('cpf_salao', cpf_salao).select('*');
+        console.log(info[0].plano);
 
         if(info[0].plano === 'plano individual'){
             return {res: "Seu Plano não permite cadastrar Funcionários"};
-        } else if(info[0].plano === 'personalizado'){
+        } else if(info[0].plano === 'plano personalizado'){
             if(info[0].quantidade_funcionarios < info[0].limite_funcionarios){
                 await connection('funcionarios').insert(Data);
                 await connection('salao').where('cpf_salao', cpf_salao).update('quantidade_funcionarios', info[0].quantidade_funcionarios + 1);
