@@ -98,11 +98,13 @@ export class Cliente {
                     var hora_termino = horas + hora;
                     console.log('Hora termino:', hora_termino);
                     var proximo_agendamento = await connection('agenda').where('cpf_salao', cpf_salao)
-                    .where('hora', '>', hora).where('hora', '<', hora_termino).where('status_servico', 'agendado');
+                    .where('dia', dia).where('mes', mes).where('ano', ano).where('hora', '>', hora).where('hora', '<', hora_termino).where('status_servico', 'agendado');
                     console.log(proximo_agendamento);
                     if(proximo_agendamento.length === 0){ //nao tem conflito com o proximo agendado
                         return ('agendamento permitido');
                     };
+                    console.log("Aqui>>>>>>", proximo_agendamento);
+
                     return ('conflito entre agendamentos');                
                 };
                 return ('Horário já ocupado');
@@ -127,10 +129,11 @@ export class Cliente {
                     var horas = termino_agendamento_atual[0].intervalo_entre_agendamentos; // Obtém o intervalo entre agenamentos;
                     var hora_termino = horas + hora;
                     var proximo_agendamento = await connection('agenda').where('cpf_funcionario', cpf_funcionario)
-                    .where('hora', '>', hora).where('hora', '<', hora_termino);
+                    .where('dia', dia).where('mes', mes).where('ano', ano).where('hora', '>', hora).where('hora', '<', hora_termino);
                     if(proximo_agendamento.length === 0){ //nao tem conflito com o proximo agendado
                         return ('agendamento permitido');
                     } else {
+                        console.log("aqui>>>>>>>>>",proximo_agendamento);
                         return ('conflito entre agendamentos');
                     };
                 };
