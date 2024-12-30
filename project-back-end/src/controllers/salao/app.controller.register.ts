@@ -25,5 +25,10 @@ export class RegisterSalaoController {
   async Salao(@Body() data: SalaoRegisterDto): Promise<object>{
     return await this.register.Salao(data);
   };
+  // Rota para buscar Parceiro;.
+  @Post('/parceiros')
+  async buscarParceiro(@Body() data:SalaoRegisterDto): Promise<object>{
+    return await this.register.buscarParceiro(data);
+  };
 }
 

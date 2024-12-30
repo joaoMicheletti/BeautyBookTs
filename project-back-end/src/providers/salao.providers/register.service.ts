@@ -64,4 +64,15 @@ export class SalaoRegister {
     console.log(lista);
     return lista;
   };
-};
+  async buscarParceiro(data: SalaoRegisterDto): Promise<object> {
+    const nome_salao = data;
+    console.log(nome_salao.nome_salao);
+    var resp = await connection('salao').where('nome_salao', nome_salao.nome_salao).select('*');
+    console.log(resp.length)
+    if(resp.length === 0){
+      return resp;
+    } else {
+      return resp;
+    }
+  };
+}

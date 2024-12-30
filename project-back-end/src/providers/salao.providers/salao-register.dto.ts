@@ -9,6 +9,5 @@ export class SalaoRegisterDto {
     data_cadastro: String;
     indicado_por: string;
     dias_free: string
-    
   }
   
