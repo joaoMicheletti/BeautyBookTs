@@ -12,8 +12,9 @@ export class Funcionario{
             senha,
         } = data;
         const Data = data;
+        console.log(Data);
         const info = await connection('salao').where('cpf_salao', cpf_salao).select('*');
-        console.log(info[0].plano);
+        console.log(info[0].plano, "ola");
 
         if(info[0].plano === 'plano individual'){
             return {res: "Seu Plano não permite cadastrar Funcionários"};
@@ -25,7 +26,8 @@ export class Funcionario{
                 return {res: "você exedeu o limite de funcionários cadastrado"};
             };
         }
-        return info;
+        console.log(info, 'This');
+        return {res: "Contrate um plano para cadastrar seus funcionáriuos."};
     };
     async ListarFuncionarios(data: FuncionarioDto): Promise<object> {
         const {cpf_salao} = data;

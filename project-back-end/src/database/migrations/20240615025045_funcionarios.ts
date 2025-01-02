@@ -7,6 +7,7 @@ export async function up(knex: Knex): Promise<void> {
         table.integer('cpf_salao').notNullable();
         table.string('nome_completo').notNullable();
         table.integer('cpf_funcionario').notNullable();
+        table.integer('foto_fincionario');
         table.string('senha').notNullable();
     });
 }

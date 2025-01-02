@@ -10,11 +10,17 @@ export class Ajustes {
     };
     //salvando o nome da img no banco de dados junto ao seu salão 
     async LogoSalao(data : AjustesDto): Promise<object>{
-        const {logo_salao, cpf_salao} = data;
-        console.log("logo salao e cpf <><><><><><><><:><><><<><><><", logo_salao, cpf_salao);
-        const list = await connection('salao').where('cpf_salao', cpf_salao)
-        .update('logo_salao', logo_salao);
-        return {list};
+        const {logo_salao, cpf_salao, cpf_funcionario} = data;
+        console.log("logo salao e cpf <><><><><><><><:><><><<><><><", logo_salao, cpf_salao, cpf_funcionario);
+        if(cpf_funcionario === undefined){
+            const list = await connection('salao').where('cpf_salao', cpf_salao)
+            .update('logo_salao', logo_salao);
+            return {list};
+        } else {
+            const list = await connection('funcionarios').where('cpf_funcionario', cpf_funcionario)
+            .update('foto_fincionario', logo_salao);
+            return {list};
+        };
     };
     // funçao para definir o tempo entre um agendamento e outro ;
     async IntervaloAgendamento(data : AjustesDto): Promise<string>{
