@@ -6,10 +6,11 @@ import connection from "../../database/connection";
 export class Servicos {
   async Register(data: ServicosRegisterDto): Promise<string> {
     const {
-      cpf_salao, servico, preco
+      cpf_salao, servico, preco, tempo
     } = data;
 
-    var Data = { cpf_salao, servico, preco };
+    var Data = { cpf_salao, servico, preco, tempo };
+    console.log("Aqui Fiote fica ligado",Data);
 
     try {
       await connection('servicos').insert(Data);

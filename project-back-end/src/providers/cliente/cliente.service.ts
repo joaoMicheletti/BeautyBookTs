@@ -162,14 +162,13 @@ export class Cliente {
         console.log('data criar ag ',data);
         //agendar para salão ...
         if(cpf_funcionario === undefined){
-            var termino = await connection('salao').where('cpf_salao', cpf_salao).select('intervalo_entre_agendamentos');
+            var termino = await connection('servicos').where('cpf_salao', cpf_salao)
+            .where('servico', servico).select('tempo');
             console.log(termino, 'trmino do salão ');
             
-            //simplificando a hora.
-            var horas = Math.floor(termino[0].intervalo_entre_agendamentos);
-            console.log(horas, 'int horas')
+            var horas : number = termino[0].tempo;
+            console.log(horas, 'int horas');
             var hora_termino = hora + horas
-            console.log("HORA TERMino ><><><><><><><><><= ", hora_termino);
             
             const Data =  {
                 cpf_salao,
@@ -186,14 +185,19 @@ export class Cliente {
                 obs,
                 status_servico
             };
+            console.log(Data)
             var conf = await connection('agenda').insert(Data);
             return (conf);
         }else if(cpf_salao === undefined){ //agendar para funcionário ...
             var info_funcionario = await connection('funcionarios').where('cpf_funcionario', cpf_funcionario).select('*');
-            
-            var termino = await connection('salao').where('cpf_salao', info_funcionario[0].cpf_salao).select('intervalo_entre_agendamentos');
+            console.log("INFO", info_funcionario)
+            var termino = await connection('servicos')
+            .where('cpf_salao', info_funcionario[0].cpf_salao)
+            .where('servico',servico).select('tempo');
+            console.log("serviço here", termino[0].tempo.replace(":", "."))
             //simplificando a hora.
-            var horas : number = termino[0].intervalo_entre_agendamentos;
+            var horas : number = parseFloat(termino[0].tempo.replace(":", "."));
+            console.log('Horas', horas);
             var hora_termino = horas + hora;
             console.log('criaragendamento >>> ', hora_termino);
             const Data =  {
@@ -212,6 +216,7 @@ export class Cliente {
                 obs,
                 status_servico
             };
+            console.log("this data has a all data", Data)
             var conf = await connection('agenda').insert(Data);
             return (conf);
         };
