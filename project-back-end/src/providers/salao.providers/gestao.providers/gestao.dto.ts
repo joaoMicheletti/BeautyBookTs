@@ -1,6 +1,6 @@
 export class GestaoDto {
     cpf_salao: string;
-    mes: string;
-    ano: string;
-    preco:string;
+    periodo: String;
+    inicio: String;
+    termino: String;
 }

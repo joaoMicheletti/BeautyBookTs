@@ -25,10 +25,8 @@ import { Login } from './providers/salao.providers/login.service';
 import {SdkMercadopagoController} from './controllers/salao/pagamento/app.controller.sdkMp';
 import { SdkMp } from './providers/salao.providers/pagamento.providers/sdkMp.service';
 // controller e provider de gestao
-import {GestaoEntradaController}  from './controllers/salao/gestao/app.controller.gestao.entrada';
 import { GestaoController } from './controllers/salao/gestao/app.controller.gestao.diario';
 import { Gestao } from './providers/salao.providers/gestao.providers/gestao.service';
-import { GestaoEntrada } from './providers/salao.providers/gestao.providers/getao.entrada.sevice';
 // controller e provider do cpanel 
 import { CpanelController } from './controllers/cpanel/app.controlle.cpanel';
 import { Cpanel } from './providers/cpanel/cpanel.service';
@@ -51,7 +49,7 @@ import { Ajustes } from './providers/ajustes/ajustes.service';
     AgendaController,
     FuncionarioController,
     LoginController,
-    GestaoController, GestaoEntradaController,
+    GestaoController,
     CpanelController,
     ClienteContrller,
     SdkMercadopagoController,
@@ -65,7 +63,7 @@ import { Ajustes } from './providers/ajustes/ajustes.service';
     Agenda,
     Funcionario,
     Login,
-    Gestao, GestaoEntrada,
+    Gestao,
     Cpanel,
     Cliente,
     SdkMp,
