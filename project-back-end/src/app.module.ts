@@ -38,6 +38,9 @@ import { UploadModule } from './controllers/ajustes/UploadModule';
 import { AjustesController } from './controllers/ajustes/app.controller.ajustes';
 import { Ajustes } from './providers/ajustes/ajustes.service';
 
+//notificatiosn
+import {NotificationController} from './controllers/notifications/app.controller.notifications'
+import {servicesNotification} from './providers/notifications/notifications.services';
 
 @Module({
   imports: [UploadModule],
@@ -54,6 +57,7 @@ import { Ajustes } from './providers/ajustes/ajustes.service';
     ClienteContrller,
     SdkMercadopagoController,
     AjustesController,
+    NotificationController,
   ],
   providers: [
     SalaoRegister,
@@ -67,7 +71,8 @@ import { Ajustes } from './providers/ajustes/ajustes.service';
     Cpanel,
     Cliente,
     SdkMp,
-    Ajustes
+    Ajustes,
+    servicesNotification,
   ],
 })
 export class AppModule {}

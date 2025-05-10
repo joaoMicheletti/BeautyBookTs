@@ -194,7 +194,7 @@ export class Cliente {
             var termino = await connection('servicos')
             .where('cpf_salao', info_funcionario[0].cpf_salao)
             .where('servico',servico).select('tempo');
-            console.log("serviço here", termino[0].tempo.replace(":", "."))
+            console.log("serviço here", termino)//, termino[0].tempo.replace(":", "."))
             //simplificando a hora.
             var horas : number = parseFloat(termino[0].tempo.replace(":", "."));
             console.log('Horas', horas);
