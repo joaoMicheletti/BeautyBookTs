@@ -196,7 +196,7 @@ export class Cliente {
             .where('servico',servico).select('tempo');
             console.log("serviço here", termino)//, termino[0].tempo.replace(":", "."))
             //simplificando a hora.
-            var horas : number = parseFloat(termino[0].tempo.replace(":", "."));
+            var horas : number = parseFloat(termino[0].tempo);
             console.log('Horas', horas);
             var hora_termino = horas + hora;
             console.log('criaragendamento >>> ', hora_termino);
