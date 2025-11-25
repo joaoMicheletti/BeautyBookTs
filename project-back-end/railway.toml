@@ -4,8 +4,8 @@ builder = "NIXPACKS"
 [phases.setup]
 nixPkgs = ["nodejs_18"]
 
-[phases.build]
-cmds = ["npm install", "npm run build"]
+[phases.install]
+cmds = ["npm install"]
 
 [start]
-cmd = "node dist/src/main.js"
+cmd = "npm start"
