@@ -1,6 +1,6 @@
 import {Injectable} from '@nestjs/common';
 import { AjustesDto, UploadImagemDto } from './ajustes.dto';
-import connection from 'src/database/connection';
+import connection from '../../database/connection';
 
 @Injectable()
 export class Ajustes {

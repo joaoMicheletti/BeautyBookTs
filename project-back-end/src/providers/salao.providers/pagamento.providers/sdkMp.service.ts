@@ -1,7 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { SdkMercadopagoDto } from './sdkMp.dto';
 import { MercadoPagoConfig, Preference } from 'mercadopago';
-import connection from 'src/database/connection';
+import connection from '../../../database/connection';
+//import connection from 'src/database/connection';
 
 @Injectable()
 export class SdkMp {

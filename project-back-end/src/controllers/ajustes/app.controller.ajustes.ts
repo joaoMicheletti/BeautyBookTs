@@ -1,7 +1,7 @@
 import { Controller, Post, Put, Body, UploadedFile, UseInterceptors } from "@nestjs/common";
 //import { FileInterceptor } from "@nestjs/platform-express";
-import { Ajustes } from "src/providers/ajustes/ajustes.service";
-import { AjustesDto } from "src/providers/ajustes/ajustes.dto";
+import { Ajustes } from "../../providers/ajustes/ajustes.service";
+import { AjustesDto } from "../../providers/ajustes/ajustes.dto";
 
 
 @Controller()

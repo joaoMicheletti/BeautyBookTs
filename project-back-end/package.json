@@ -9,7 +9,7 @@
     "build": "tsc && npm run copy-public",
     "copy-public": "copyfiles -u 1 src/public/* dist/src/public",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
-    "start": "nest start",
+    "start": "node -r tsconfig-paths/register dist/src/main.js",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",

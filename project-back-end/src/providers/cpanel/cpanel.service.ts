@@ -1,6 +1,6 @@
 import { Inject, Injectable } from "@nestjs/common";
 import { CpanelDto } from "./cpanel.dto";
-import connection from "src/database/connection";
+import connection from "../../database/connection";
 
 @Injectable()
 export class Cpanel {

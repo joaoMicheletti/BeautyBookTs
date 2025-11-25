@@ -1,6 +1,7 @@
 import { Body, Controller, Post } from "@nestjs/common";
 import {CpanelDto} from '../../providers/cpanel/cpanel.dto';
-import { Cpanel } from "src/providers/cpanel/cpanel.service";
+import { Cpanel } from "../../providers/cpanel/cpanel.service";
+//import { Cpanel } from "src/providers/cpanel/cpanel.service";
 
 
 

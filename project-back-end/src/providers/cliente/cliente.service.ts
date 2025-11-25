@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import {ClienteDto} from './cliente.dto'
-import connection from "src/database/connection";
+import connection from "../../database/connection";
 
 @Injectable()
 export class Cliente {

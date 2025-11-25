@@ -4,6 +4,7 @@ import { Response } from 'express';
 import { SalaoRegister } from '../../providers/salao.providers/register.service';
 import { SalaoRegisterDto } from '../../providers/salao.providers/salao-register.dto';
 
+
 @Controller()
 export class RegisterSalaoController {
   constructor(private readonly register: SalaoRegister) {}

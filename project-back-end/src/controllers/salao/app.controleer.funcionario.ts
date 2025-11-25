@@ -1,6 +1,7 @@
 import { Controller, Body, Post } from "@nestjs/common";
 import {Funcionario} from '../../providers/salao.providers/funcionario.service';
-import { FuncionarioDto } from "src/providers/salao.providers/funcionario-register.dto";
+import { FuncionarioDto } from "../../providers/salao.providers/funcionario-register.dto";
+
 
 
 @Controller()

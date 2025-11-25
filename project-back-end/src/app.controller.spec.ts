@@ -87,10 +87,11 @@ describe('Salon and services', () => {
     it('should register a new service', async () => {
       // Dados simulados para registro de um novo serviço
       const salaoData = {
-        cpf_salao: '10', // CPF fictício
+        cpf_salao: '10',
         servico: 'Salão Teste',
         preco: '150',
-        id: ''
+        id: '',
+        tempo: '30'
       };
 
       // Mock do método 'where' de 'connection' para simular que não há serviço cadastrado
@@ -109,11 +110,13 @@ describe('Salon and services', () => {
     it('should searsh all services', async () => {
       // Dados simulados para registro de um novo serviço
       const salaoData = {
-        cpf_salao: '10', // CPF fictício
+        cpf_salao: '10',
         servico: 'Salão Teste',
         preco: '150',
-        id:''
+        id:'',
+        tempo: '30'
       };
+
 
       // Mock do método 'where' de 'connection' para simular que não há serviço cadastrado
       jest.spyOn(connection('servicos'), 'where').mockResolvedValue([]);
@@ -145,11 +148,13 @@ describe('Salon and services', () => {
     it('Delete a service', async () => {
       // Dados simulados para registro de um novo serviço
       const salaoData = {
-        cpf_salao: '10', // CPF fictício
+        cpf_salao: '10',
         servico: 'Salão Teste',
         preco: '150',
-        id:'1'
+        id:'1',
+        tempo: '30'
       };
+
       jest.spyOn(connection('servicos'), 'where').mockResolvedValue([]);
       jest.spyOn(connection('servicos'), 'update').mockResolvedValue([1]);  
       const response = await servico.Delete(salaoData); 
@@ -163,7 +168,7 @@ describe('Salon and services', () => {
         dia: "terça",
         inicio_trabalhos: "08:00",
         fim_trabalhos: "18:00",
-        id: '0'
+        id: '0',
       };
       jest.spyOn(connection('horarios'), 'where').mockResolvedValue([]);
       jest.spyOn(connection('horarios'), 'insert').mockResolvedValue([1]);
