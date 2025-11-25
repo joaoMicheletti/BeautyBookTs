@@ -8,4 +8,4 @@ nixPkgs = ["nodejs_18"]
 cmds = ["npm install", "npm run build"]
 
 [start]
-cmd = "node dist/main.js"
+cmd = "node dist/src/main.js"
