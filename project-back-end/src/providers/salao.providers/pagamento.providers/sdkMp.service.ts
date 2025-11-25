@@ -13,7 +13,7 @@ export class SdkMp {
         let Preco = 0;
         if (plano === 'plano individual') {
             console.log(plano)
-            Preco += 1;
+            Preco += 50;
             console.log(Preco)
         }else if(plano === "plano individual Anoal"){
             Preco +=((parseInt(quantidade) *50)*12)-(((parseInt(quantidade) *50)*12)*0.20);
