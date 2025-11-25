@@ -40,9 +40,9 @@ export class SdkMp {
                         }
                     ],
                     "back_urls": {
-                        "success": "https://127.0.0.1:3000/pendente/",
-                        "failure": "http://127.0.0.1:3000/pendente/",
-                        "pending": "http://127.0.0.1:3000/pendente/"
+                        "success": "https://34a8cdfd5e9a.ngrok-free.app/pendente/",
+                        "failure": "https://34a8cdfd5e9a.ngrok-free.app/pendente/",
+                        "pending": "https://34a8cdfd5e9a.ngrok-free.app/pendente/"
                     },
                     "auto_return": "approved",
                 }
